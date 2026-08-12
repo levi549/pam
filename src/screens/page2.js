@@ -1,20 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
+import Checkbox from 'expo-checkbox'
 import { StyleSheet, Text, View,Image,TextInput, TouchableOpacity } from 'react-native';
-import page2_button from '../components/page2_button';
-import {useState} from 'react';
+import Page2_button from '../components/page2_button';
+import {useState,useEffect} from 'react';
 
 
-export default function page2() {
+export default function page2({navigation}) {
 
 const [email, setEmail] = useState('');
 const [senha, setSenha] = useState('');
-    return(
-        <View style={styles.container}>
-            <Text style={styles.texto_acesse}>Acesse</Text>
-           
-            <Text>com E-mail e senha</Text>
+const [check, setCheck] = useState(false);
+useEffect(() => {
+    if (check) {
+      console.log('Senha salva');
+    }
+}, [check]);
+
+return(
+    <View style={styles.container}>
+        <Text style={styles.texto_acesse}>Acesse</Text>
+       
+        <Text>com E-mail e senha</Text>
             <View style={styles.input}>
-            <Text>E-mail</Text>
+            <Text style={styles.text_label}>E-mail</Text>
             <TextInput 
                 placeholder="E-mail" 
                 style={styles.inputbox}
@@ -23,7 +31,7 @@ const [senha, setSenha] = useState('');
             />
             </View>
             <View style={styles.input}>
-            <Text>Senha</Text>
+            <Text style={styles.text_label}>Senha</Text>
             <TextInput 
                 placeholder="Senha" 
                 secureTextEntry={true}
@@ -31,13 +39,21 @@ const [senha, setSenha] = useState('');
                 value={senha}
                 onChangeText={setSenha}
             />
+            
             </View>
-            <View>
-                <Text>Esqueci minha senha</Text>
+            <View style={styles.esqueci_senha}>
+                <Checkbox style={styles.checkbox} value={check} onValueChange={setCheck} />
+                <Text style={{fontSize: 12, marginRight: 55}}>Lembrar senha</Text>
+                <Text style={{fontSize: 12}}>Esqueci minha senha</Text>
             </View>
-            <Text>-------------Ou continue com------------</Text>
-            <page2_button email={email} senha={senha} />
-            <View>
+            <View style={{marginTop: 20, }}>
+                <Page2_button email={email} senha={senha} navigation={navigation} />
+            </View>
+            <View style={styles.text2_container}>
+                <Text>-------------Ou continue com------------</Text>
+            </View>
+            
+            <View style={styles.images}>
                 <Image source={require('../../assets/Google.png')} style={styles.image}/>
                 <Image source={require('../../assets/Facebook.png')} style={styles.image}/>
             </View>
@@ -50,7 +66,7 @@ const styles = StyleSheet.create({
 
 container: {
     flex: 1,
-    backgroundColor: '#f0f7ee',
+    backgroundColor: '#ffffff',
     marginLeft:10,
     marginTop: 10,
 
@@ -66,7 +82,9 @@ container: {
     marginTop: 10,
     marginBottom: 10,
     width: 280,
-    height: 50,
+    height: 60,
+    
+
 
 
  },
@@ -76,11 +94,41 @@ container: {
     width: 280,
     height: 50,
     borderRadius: 5,
-    marginTop:5
+    marginTop:5,
+    placeholderTextColor: '#999',
+    backgroundColor: '#E8E8E8'
+
+ },
+ text_label:{
+    fontSize: 10,
+    color: 'black',
+    
+
+
+ },
+ images:{
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 10,
+
+ },
+ text2_container:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 40,
+
+ },
+ esqueci_senha:{
+    flexDirection: 'row',
+
+ },
+ checkbox:{
+    width: 20,
+    height: 20,
+    borderWidth: 2,
+    borderColor: '#16C776',
+    borderRadius: 5,
+    marginRight: 5,
+
  }
-
-
-
-
-
 })
