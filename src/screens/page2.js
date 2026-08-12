@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
 container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    marginLeft:10,
-    marginTop: 10,
+
 
  },
 
@@ -96,12 +95,14 @@ container: {
     borderRadius: 5,
     marginTop:5,
     placeholderTextColor: '#999',
-    backgroundColor: '#E8E8E8'
+    backgroundColor: '#E8E8E8',
+    marginLeft:8
 
  },
  text_label:{
     fontSize: 10,
     color: 'black',
+    marginLeft:8
     
 
 

@@ -76,6 +76,7 @@ container: {
  text_label:{
     fontSize: 10,
     color: 'black',
+    marginLeft:8
     
 
 
@@ -111,6 +112,7 @@ container: {
     marginTop:5,
     placeholderTextColor: '#999',
     backgroundColor: '#E8E8E8',
+    marginLeft:8
 
     
 
