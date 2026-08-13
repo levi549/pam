@@ -6,6 +6,7 @@ export default function page3() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmaSenha, setConfirmaSenha] = useState('');
+    const[color,setColor]=useState('red')
     function testarSenha(){
         if(senha !== confirmaSenha){
             alert('As senhas não coincidem');
@@ -14,6 +15,16 @@ export default function page3() {
             alert('Cadastro realizado com sucesso');
         }
     }
+
+useEffect(() => {
+  if (confirmaSenha === '') {
+    setColor('red');
+  } else if (senha === confirmaSenha) {
+    setColor('green');
+  } else {
+    setColor('red');
+  }
+}, [senha, confirmaSenha])
     return(
 
         <View style={styles.container}>
@@ -46,7 +57,7 @@ export default function page3() {
                 value={confirmaSenha}
                 onChangeText={setConfirmaSenha}
                 secureTextEntry
-                style={styles.inputbox}
+                 style={[styles.inputbox1, { borderColor: color }]}
                 />
             </View>
             </View>
@@ -70,7 +81,8 @@ const styles = StyleSheet.create({
 
 container: {
     backgroundColor: '#ffffff',
- 
+    flex:1,
+    marginTop:15
 
 },
  text_label:{
@@ -112,16 +124,23 @@ container: {
     marginTop:5,
     placeholderTextColor: '#999',
     backgroundColor: '#E8E8E8',
-    marginLeft:8
-
-    
-
-
- 
-
-
-
+    marginLeft:8,
+  
 },
+ inputbox1:{
+    
+    color: 'black',
+    width: 280,
+    height: 50,
+    borderRadius: 5,
+    marginTop:5,
+    placeholderTextColor: '#999',
+    backgroundColor: '#E8E8E8',
+    marginLeft:8,
+    borderWidth:3
+  
+},
+
 button:{
     width: 280,
     height: 50,
