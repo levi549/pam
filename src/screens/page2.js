@@ -3,13 +3,15 @@ import Checkbox from 'expo-checkbox'
 import { StyleSheet, Text, View,Image,TextInput, TouchableOpacity } from 'react-native';
 import Page2_button from '../components/page2_button';
 import {useState,useEffect} from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
 
 export default function page2({navigation}) {
 
 const [email, setEmail] = useState('');
 const [senha, setSenha] = useState('');
-const [check, setCheck] = useState(false);
+const [check, setCheck] = useState(true);
+
 useEffect(() => {
     if (check) {
       console.log('Senha salva');
@@ -30,16 +32,24 @@ return(
                 onChangeText={setEmail}
             />
             </View>
-            <View style={styles.input}>
+            <View style={styles.input,{backgroundColor:''}}>
             <Text style={styles.text_label}>Senha</Text>
+            <View style={{flexDirection:'row'}}>
             <TextInput 
                 placeholder="Senha" 
-                secureTextEntry={true}
+                secureTextEntry={!check}
                 style={styles.inputbox}
                 value={senha}
                 onChangeText={setSenha}
             />
-            
+             <TouchableOpacity onPress={() => setCheck(!check)} style={styles.olho}>
+            <Ionicons
+            name={check ? 'eye-off' : 'eye'}
+            size={24}
+            color="#666"
+            />
+            </TouchableOpacity>
+            </View>
             </View>
             <View style={styles.esqueci_senha}>
                 <Checkbox style={styles.checkbox} value={check} onValueChange={setCheck} />
@@ -70,7 +80,15 @@ container: {
 
 
  },
-
+olho: {
+    width: 40,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'#E8E8E8',
+    
+    marginTop:5
+},
  texto_acesse:{
     fontSize: 30,
     marginTop: 10,
@@ -88,11 +106,11 @@ container: {
 
  },
  inputbox:{
-    
+    flex:1,
     color: 'black',
     width: 280,
     height: 50,
-    borderRadius: 5,
+    borderRadius: 4,
     marginTop:5,
     placeholderTextColor: '#999',
     backgroundColor: '#E8E8E8',
@@ -121,6 +139,7 @@ container: {
  },
  esqueci_senha:{
     flexDirection: 'row',
+    marginTop:20
 
  },
  checkbox:{
