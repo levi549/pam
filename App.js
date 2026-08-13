@@ -9,14 +9,18 @@ import page3 from './src/screens/page3';
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-   <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen name="SplashScreen" component={splash_screen} />
-      <Stack.Screen name="page1" component={page1} />
-      <Stack.Screen name="page2" component={page2} />
-      <Stack.Screen name="page3" component={page3} />
-    </Stack.Navigator>
-  </NavigationContainer>
+<NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="SplashScreen" component={splash_screen} />
+        <Stack.Screen name="page1" component={page1} />
+        <Stack.Screen name="page2" component={page2} />
+        <Stack.Screen name="page3" component={page3} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
